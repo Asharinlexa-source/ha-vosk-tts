@@ -11,7 +11,7 @@ host_network: true
 arch:
   - amd64
 
-image: "ghcr.io/asharinlexa-source/ha-vosk-tts:latest"
+image: "ghcr.io/asharinlexa-source/ha-vosk-tts"  # ← БЕЗ :latest
 
 map:
   - type: homeassistant_config
