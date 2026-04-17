@@ -1,0 +1,7 @@
+profile local_vosk_tts flags=(attach_disconnected,mediate_deleted) {
+  network,
+  capability,
+  file,
+  umount,
+  signal,
+}
