@@ -18,8 +18,8 @@ ports:
   10200/tcp: 10200
 
 map:
-  - type: addon_config
-    path: /data
+  - type: homeassistant_config
+    path: /config
 
 options: {}
 schema: {}
