@@ -31,4 +31,4 @@ jobs:
           context: ./vosk_tts
           file: ./vosk_tts/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/asharinlexa-source/ha-vosk-tts:latest
