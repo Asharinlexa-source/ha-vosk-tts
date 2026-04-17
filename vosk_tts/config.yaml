@@ -1,12 +1,11 @@
 name: "Vosk TTS"
-version: "1.0.0"
+version: "1.0.1"
 slug: "vosk_tts"
 description: "Local Vosk TTS for Home Assistant with Russian voices"
 
 startup: services
 boot: auto
 init: false
-
 host_network: true
 
 arch:
@@ -14,12 +13,12 @@ arch:
 
 image: "ghcr.io/asharinlexa-source/ha-vosk-tts:latest"
 
-ports:
-  10200/tcp: 10200
-
 map:
   - type: homeassistant_config
     path: /config
+
+ports:
+  10200/tcp: 10200
 
 options: {}
 schema: {}
