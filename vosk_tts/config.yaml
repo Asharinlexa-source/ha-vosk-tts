@@ -8,7 +8,7 @@ init: false
 host_network: true
 arch:
   - amd64
-image: "ghcr.io/asharinlexa-source/ha-vosk-tts:latest"
+image: "ghcr.io/asharinlexa-source/ha-vosk-tts"
 ports:
   10200/tcp: 10200
 options: {}
