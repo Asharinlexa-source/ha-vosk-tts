@@ -6,7 +6,10 @@ RUN pip install --no-cache-dir \
     vosk-tts \
     wyoming \
     num2words \
-    numpy
+    numpy \
+    eng_to_ipa \
+    ruaccent \
+    regex
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
