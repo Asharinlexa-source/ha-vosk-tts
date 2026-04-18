@@ -10,15 +10,14 @@ RUN apk add --no-cache \
     python3-dev \
     libffi-dev \
     musl-dev \
-    linux-headers
+    linux-headers \
+    ca-certificates
 
 WORKDIR /opt
 
 RUN git clone https://github.com/mitrokun/wyoming_tts_vosk.git
 
 WORKDIR /opt/wyoming_tts_vosk
-
-RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel
 
 RUN pip3 install --no-cache-dir \
     vosk-tts \
