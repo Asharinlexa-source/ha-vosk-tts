@@ -1,10 +1,15 @@
-FROM python:3.11-slim
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.11
+FROM ${BUILD_FROM}
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
+    bash \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    build-base \
+    py3-pip
 
-RUN git clone https://github.com/mitrokun/wyoming_tts_vosk.git /opt/wyoming_tts_vosk
+WORKDIR /opt
+
+RUN git clone https://github.com/mitrokun/wyoming_tts_vosk.git
 
 WORKDIR /opt/wyoming_tts_vosk
 
