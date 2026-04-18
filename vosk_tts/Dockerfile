@@ -1,17 +1,10 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
-FROM ${BUILD_FROM}
+FROM python:3.11-slim
 
-RUN apk add --no-cache \
-    bash \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
-    build-base \
-    python3 \
-    py3-pip \
-    python3-dev \
-    libffi-dev \
-    musl-dev \
-    linux-headers \
-    ca-certificates
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt
 
@@ -19,14 +12,7 @@ RUN git clone https://github.com/mitrokun/wyoming_tts_vosk.git
 
 WORKDIR /opt/wyoming_tts_vosk
 
-RUN pip3 install --no-cache-dir \
-    vosk-tts \
-    wyoming \
-    num2words \
-    numpy \
-    eng_to_ipa \
-    ruaccent \
-    regex
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
