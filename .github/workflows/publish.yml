@@ -33,4 +33,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/asharinlexa-source/ha-vosk-tts:latest
-            ghcr.io/asharinlexa-source/ha-vosk-tts:1.0.1
+            ghcr.io/asharinlexa-source/ha-vosk-tts:1.1.0
