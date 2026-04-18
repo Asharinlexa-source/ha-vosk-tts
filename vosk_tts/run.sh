@@ -1,30 +1,22 @@
-#!/usr/bin/with-contenv bashio
+#!/bin/bash
+set -e
 
-MODEL_PATH="$(bashio::config 'model_path')"
-URI="$(bashio::config 'uri')"
-SPEECH_RATE="$(bashio::config 'speech_rate')"
-USE_ACCENTIZER="$(bashio::config 'use_accentizer')"
+MODEL_PATH="/config/addons/data/vosk_tts/data/vosk-model-tts-ru-0.10-multi"
+URI="tcp://0.0.0.0:10205"
+SPEECH_RATE="1.0"
 
-bashio::log.info "Starting Wyoming Vosk TTS"
-bashio::log.info "Model path: ${MODEL_PATH}"
-bashio::log.info "URI: ${URI}"
-bashio::log.info "Speech rate: ${SPEECH_RATE}"
-bashio::log.info "Use accentizer: ${USE_ACCENTIZER}"
+echo "Starting Wyoming Vosk TTS"
+echo "Model path: ${MODEL_PATH}"
+echo "URI: ${URI}"
+echo "Speech rate: ${SPEECH_RATE}"
 
 if [ ! -d "${MODEL_PATH}" ]; then
-  bashio::log.error "Model path does not exist: ${MODEL_PATH}"
+  echo "ERROR: Model path does not exist: ${MODEL_PATH}"
   exit 1
 fi
 
-CMD=(python -m wyoming_vosk
-  --uri "${URI}"
-  --streaming
-  --vosk-model-path "${MODEL_PATH}"
+python -m wyoming_vosk \
+  --uri "${URI}" \
+  --streaming \
+  --vosk-model-path "${MODEL_PATH}" \
   --speech-rate "${SPEECH_RATE}"
-)
-
-if [ "${USE_ACCENTIZER}" = "true" ]; then
-  CMD+=(--use-accentizer)
-fi
-
-exec "${CMD[@]}"
