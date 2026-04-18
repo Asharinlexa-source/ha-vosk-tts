@@ -1,24 +1,27 @@
 name: "Vosk TTS"
-version: "1.0.1"
 slug: "vosk_tts"
-description: "Local Vosk TTS for Home Assistant with Russian voices"
-
+version: "1.1.0"
+description: "Local Wyoming-based Vosk TTS for Home Assistant with streaming"
 startup: services
 boot: auto
 init: false
 host_network: true
-
 arch:
   - amd64
 
-image: "ghcr.io/asharinlexa-source/ha-vosk-tts"  # ← БЕЗ :latest
-
 map:
   - type: homeassistant_config
+    read_only: false
     path: /config
 
-ports:
-  10200/tcp: 10200
+options:
+  model_path: "/config/addons/data/vosk_tts/data/vosk-model-tts-ru-0.10-multi"
+  uri: "tcp://0.0.0.0:10205"
+  speech_rate: 1.0
+  use_accentizer: false
 
-options: {}
-schema: {}
+schema:
+  model_path: str
+  uri: str
+  speech_rate: float
+  use_accentizer: bool
